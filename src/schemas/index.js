@@ -18,3 +18,22 @@ export const basicSchema = yup.object().shape({
     
 
 })
+
+
+
+export const advancedSchema = yup.object().shape()
+username : yup
+.string()
+.min(3,"Username must be 3 characters")
+.required("Required")
+
+
+jobType : yup
+.string()
+.oneOf(["designer","developer","manager","other"])
+.required("Required")
+
+
+acceptedTos : yup
+.boolean()
+.oneOf([true],"please accept the  terms of service")

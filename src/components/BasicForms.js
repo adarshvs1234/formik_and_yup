@@ -4,6 +4,17 @@ import { basicSchema } from '../schemas'
 
 
 
+
+const onSubmit  = (values,actions) =>{
+
+  console.log(values);
+  console.log(actions);
+  await new Promise((resolve) => setTimeout(resolve,1000))
+  actions.resetForm()
+
+  
+  
+}
 const BasicForms = () => {
 
     const formik =  useFormik ({
@@ -24,9 +35,12 @@ const BasicForms = () => {
         }
     })
 
-    const {values,handleBlur,handleChange,handleSubmit} = formik
+    const {values,errors,touched,isSubmitting,handleBlur,handleChange,handleSubmit} = formik
+    
+    console.log(errors);
     
   return (
+
     <div>
       <form autoComplete='off'   onSubmit={handleSubmit}>
         <label htmlFor='email'>Email</label>
@@ -46,9 +60,10 @@ const BasicForms = () => {
             type='number'
             placeholder='Enter your age'
             onBlur={handleBlur}
+            className= {errors.email && touched.email ? "input-error":""}
             />
 
-      <button type='submit'>submit</button>
+      <button disabled={}  type='submit'>submit</button>
       </form>
     </div>
   )
